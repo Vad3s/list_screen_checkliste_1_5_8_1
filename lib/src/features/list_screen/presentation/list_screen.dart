@@ -3,6 +3,8 @@ import 'package:list_screen_checkliste_1_5_8_1/src/data/database_repository.dart
 import 'package:list_screen_checkliste_1_5_8_1/src/data/mockdatabase_repository.dart';
 
 class ListScreen extends StatefulWidget {
+  const ListScreen({super.key});
+
   @override
   _ListScreenState createState() => _ListScreenState();
 }
@@ -43,7 +45,7 @@ class _ListScreenState extends State<ListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Checkliste 1'),
+        title: const Text('Checkliste 1'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -51,14 +53,14 @@ class _ListScreenState extends State<ListScreen> {
           children: <Widget>[
             TextField(
               controller: _controller,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Enter a text',
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: _addItem,
-              child: Text('Add Item'),
+              child: const Text('Add Item'),
             ),
             Expanded(
               child: ListView.builder(
@@ -68,7 +70,7 @@ class _ListScreenState extends State<ListScreen> {
                   return ListTile(
                     title: Text(item),
                     trailing: IconButton(
-                      icon: Icon(Icons.delete),
+                      icon: const Icon(Icons.delete),
                       onPressed: () => _removeItem(item),
                     ),
                   );
