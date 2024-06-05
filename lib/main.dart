@@ -1,20 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:list_screen_checkliste_1_5_8_1/src/features/app.dart';
 
 void main() {
-  runApp(const MainApp());
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
+  runApp(const App());
 }
