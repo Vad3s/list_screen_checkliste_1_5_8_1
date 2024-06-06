@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:list_screen_checkliste_1_5_8_1/src/data/database_repository.dart';
-import 'package:list_screen_checkliste_1_5_8_1/src/data/mockdatabase_repository.dart';
 
 class ListScreen extends StatefulWidget {
-  const ListScreen({super.key});
+  final DatabaseRepository databaseRepository;
+
+  const ListScreen({super.key, required this.databaseRepository});
 
   @override
   _ListScreenState createState() => _ListScreenState();
@@ -11,18 +12,18 @@ class ListScreen extends StatefulWidget {
 
 class _ListScreenState extends State<ListScreen> {
   final TextEditingController _controller = TextEditingController();
-  final DatabaseRepository mockDB = MockDatabaseRepository();
-
+  late DatabaseRepository _repository;
   List<String> _items = [];
 
   @override
   void initState() {
     super.initState();
+    _repository = widget.databaseRepository;
     _loadItems();
   }
 
   Future<void> _loadItems() async {
-    final items = await mockDB.getItems();
+    final items = await _repository.getItems();
     setState(() {
       _items = items;
     });
@@ -30,14 +31,14 @@ class _ListScreenState extends State<ListScreen> {
 
   void _addItem() async {
     if (_controller.text.isNotEmpty) {
-      await mockDB.addItem(_controller.text);
+      await _repository.addItem(_controller.text);
       _controller.clear();
       _loadItems();
     }
   }
 
   void _removeItem(String item) async {
-    await mockDB.removeItem(item);
+    await _repository.removeItem(item);
     _loadItems();
   }
 
@@ -45,7 +46,7 @@ class _ListScreenState extends State<ListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Checkliste 1'),
+        title: const Text('Checkliste 2'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
